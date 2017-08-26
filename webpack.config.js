@@ -1,10 +1,10 @@
-var webpack = require("webpack");
-var path = require("path");
+const webpack = require("webpack");
+const path = require("path");
  
-var SRC = path.resolve(__dirname, "src");
-var OUTPUT = path.resolve(__dirname, "output");
+const SRC = path.resolve(__dirname, "src");
+const OUTPUT = path.resolve(__dirname, "output");
  
-var config = {
+const config = {
   entry: SRC + "/index.jsx",
   output: {
     path: OUTPUT,
@@ -15,6 +15,10 @@ var config = {
         include: SRC,
         loader: "babel-loader",
     }]
+  },
+  devServer: {
+    historyApiFallback: true,
+    contentBase: './'
   }
 };
  
