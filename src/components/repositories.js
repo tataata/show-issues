@@ -1,16 +1,25 @@
 import React from 'react';
+import { UserCard } from './user_card.js';
 
 class Repositories extends React.Component {
   render() {
     const repos = this.props.chocolate;
     const repoItems = repos.map(repo => {
       return (
-        <div key={repo.id}>{repo.name}</div>
+        <li key={repo.id}>{repo.name}</li>
       )
-    });    
+    });
+
     console.log(repoItems);
+
     return (
-      <div>Check your {repoItems} repositories.</div>
+      <div>
+        <UserCard />
+        <div>Here is your repos:</div>
+        <ul>
+          {repoItems}
+        </ul>
+      </div>
     );
   }
 }

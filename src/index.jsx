@@ -35,7 +35,7 @@ class App extends React.Component {
   usernameSubmitted(username) {
     this.setState({
       username,
-      // loading: true,
+      //loading: true,
     });
 
     // Fetch list of repos
