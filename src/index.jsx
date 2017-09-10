@@ -2,41 +2,65 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // Components
-import LoginForm from './components/login_form.js';
+import UsernameForm from './components/username_form';
+import UserCard from './components/user_card';
+import Repositories from './components/repositories';
 
 class App extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      loading: true,
-      issues: [],
+      loading: false,
+      username: null,
+      repositories: null,
+      selectedRepository: null,
+      issues: null,
     };
+
   }
 
-  componentDidMount() {
-    fetch('https://api.github.com/repos/tataata/tataata.com/issues?state=open')
+  // componentDidMount() {
+  //    // fetch open issues
+  //   fetch('https://api.github.com/repos/tataata/tataata.com/issues?state=open')
+  //     .then((res) => res.json() )
+  //     .then((data) => {
+  //       this.setState({
+  //         loading: false,
+  //         issues: data,
+  //       });
+  //     });
+  // }
+
+  usernameSubmitted(username) {
+    this.setState({
+      username,
+      // loading: true,
+    });
+
+    // Fetch list of repos
+    fetch(`https://api.github.com/users/${username}/repos?type=all`)
       .then((res) => res.json() )
       .then((data) => {
-        this.setState({ 
-          loading: false,
-          issues: data,
+        this.setState({
+          repositories: data,
         });
       });
   }
 
   render() {
-    return this.state.loading
-      ? <div className="loading">loading ...</div>
-      : <div>We have a bunch of issues:  {this.state.issues.length}</div>;
+    if (this.state.loading)
+      return <div className="loading">loading ...</div>;
+    else if (this.state.username === null)
+      return <UsernameForm onUsernameSubmit={this.usernameSubmitted.bind(this)}/>;
+    else if (this.state.repositories !== null)
+      return <Repositories chocolate={this.state.repositories} />;
+    else
+      return null; // default scenario
   }
 }
 
 ReactDOM.render(
-  <div>
-    HELLO
-    <LoginForm />
-    <App />
-  </div>,
+  <App />,
   document.querySelector('#container')
 );
