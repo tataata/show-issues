@@ -38,6 +38,15 @@ class App extends React.Component {
       //loading: true,
     });
 
+    // Fetch profile info
+    fetch(`https://api.github.com/users/${username}`)
+      .then((res) => res.json() )
+      .then((data) => {
+        this.setState({
+          username: data,
+        });
+      });
+
     // Fetch list of repos
     fetch(`https://api.github.com/users/${username}/repos?type=all`)
       .then((res) => res.json() )
@@ -54,7 +63,12 @@ class App extends React.Component {
     else if (this.state.username === null)
       return <UsernameForm onUsernameSubmit={this.usernameSubmitted.bind(this)}/>;
     else if (this.state.repositories !== null)
-      return <Repositories chocolate={this.state.repositories} />;
+      return (
+        <div>
+          <UserCard data={this.state.username} />
+          <Repositories chocolate={this.state.repositories} />
+        </div>
+      )
     else
       return null; // default scenario
   }

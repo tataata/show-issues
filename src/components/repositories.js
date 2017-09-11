@@ -1,5 +1,5 @@
 import React from 'react';
-import { UserCard } from './user_card.js';
+// import { UserCard } from './user_card.js';
 
 class Repositories extends React.Component {
   render() {
@@ -10,11 +10,10 @@ class Repositories extends React.Component {
       )
     });
 
-    console.log(repoItems);
+    // console.log(repoItems);
 
     return (
       <div>
-        <UserCard />
         <div>Here is your repos:</div>
         <ul>
           {repoItems}

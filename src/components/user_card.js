@@ -1,12 +1,16 @@
 import React from 'react';
 
-export class UserCard extends React.Component {
+class UserCard extends React.Component {
   render() {
+    const userData = this.props.data;
+
     return (
       <div>
-        <img src="http://placehold.it/50x50" />
-        <div>Hi, friend</div>
+        <img className="user__pic" src={userData.avatar_url} width="60" height="60" />
+        <div className="user__name">Hi, {userData.login}</div>
       </div>
     );
   }
 }
+
+export default UserCard;
