@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import UsernameForm from './components/username_form';
 import UserCard from './components/user_card';
 import Repositories from './components/repositories';
+import Issues from './components/issues';
 
 class App extends React.Component {
   constructor() {
@@ -55,6 +56,18 @@ class App extends React.Component {
           repositories: data,
         });
       });
+
+
+    // Fetch open issues
+    // tataata.com should be substituted with a ${selectedRepository}
+    fetch(`https://api.github.com/repos/${username}/tataata.com/issues?state=open`)
+      .then((res) => res.json() )
+      .then((data) => {
+        this.setState({
+          //loading: false,
+          issues: data,
+        });
+      });
   }
 
   render() {
@@ -62,11 +75,12 @@ class App extends React.Component {
       return <div className="loading">loading ...</div>;
     else if (this.state.username === null)
       return <UsernameForm onUsernameSubmit={this.usernameSubmitted.bind(this)}/>;
-    else if (this.state.repositories !== null)
+    else if (this.state.repositories !== null && this.state.issues !== null)
       return (
         <div>
           <UserCard data={this.state.username} />
           <Repositories chocolate={this.state.repositories} />
+          <Issues tomatos={this.state.issues} />
         </div>
       )
     else
