@@ -5,9 +5,13 @@ class UserCard extends React.Component {
     const userData = this.props.data;
 
     return (
-      <div>
-        <img className="user__pic" src={userData.avatar_url} width="60" height="60" />
-        <div className="user__name">Hi, {userData.login}</div>
+      <div className="col">
+        <div className="card">
+          <img className="card-img-top" src={userData.avatar_url} width="60" height="60" />
+          <div className="card-block">
+            <h4 className="card-text">Hi, {userData.login}</h4>
+          </div>
+        </div>
       </div>
     );
   }

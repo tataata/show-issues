@@ -5,18 +5,20 @@ class Repositories extends React.Component {
     const repos = this.props.chocolate;
     const repoItems = repos.map(repo => {
       return (
-        <li key={repo.id}>{repo.name} ({repo.open_issues_count})</li>
+        <li key={repo.id} className="list-group-item">{repo.name} ({repo.open_issues_count})</li>
       )
     });
 
     // console.log(repoItems);
 
     return (
-      <div>
-        <div>Here is your repos:</div>
-        <ul>
-          {repoItems}
-        </ul>
+      <div className="row">
+        <div className="col">
+          <p>Here is your repos:</p>
+          <ul className="list-group">
+            {repoItems}
+          </ul>
+        </div>
       </div>
     );
   }

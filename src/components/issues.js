@@ -11,7 +11,7 @@ class Issues extends React.Component {
 
     return (
       <div>
-        <div>Here is your issues:</div>
+        <div>Here is issues in HARDCODEDREPO:</div>
         <ul>
           {issueItems}
         </ul>

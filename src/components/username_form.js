@@ -7,7 +7,7 @@ class UsernameForm extends React.Component {
       value: '',
     };
   }
-  
+
   handleChange(event) {
     this.setState({value: event.target.value});
   }
@@ -20,13 +20,13 @@ class UsernameForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.submit.bind(this)}>
-          <input type="search" ref="username" placeholder="Type Username"
+      <div className="row">
+        <form onSubmit={this.submit.bind(this)} className="col">
+          <input type="search" ref="username" className="form-control" placeholder="Type Username"
             value={this.state.value} onChange={this.handleChange.bind(this)}/>
         </form>
       </div>
-    ); 
+    );
   }
 }
 
