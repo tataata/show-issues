@@ -20,6 +20,7 @@ class App extends React.Component {
     };
   }
 
+
   // componentDidMount() {
   //    // fetch open issues
   //   fetch('https://api.github.com/repos/tataata/tataata.com/issues?state=open')
@@ -66,9 +67,9 @@ class App extends React.Component {
     else if (this.state.repositories !== null)
       return (
         <div>
+          <UsernameForm />
           <UserCard data={this.state.username} />
-          <Repositories chocolate={this.state.repositories} />
-
+          <Repositories chocolate={this.state.repositories} userName={this.state.username.login} />
         </div>
       )
     else

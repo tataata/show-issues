@@ -11,11 +11,11 @@ class Issues extends React.Component {
   }
 
   componentWillMount() {
-    const {repoName} = this.props;
+    const {repoName, userName} = this.props;
     console.log('//// repo name: ', repoName);
 
     // Fetch open issues
-    fetch(`https://api.github.com/repos/tataata/${repoName}/issues?state=open`)
+    fetch(`https://api.github.com/repos/${userName}/${repoName}/issues?state=open`)
       .then((res) => res.json() )
       .then((data) => {
         this.setState({
@@ -25,9 +25,7 @@ class Issues extends React.Component {
   }
 
   render() {
-
     const {issues} = this.state;
-    // const issues = this.props.tomatos;
 
     console.log('///// render: ', issues);
 
@@ -49,8 +47,6 @@ class Issues extends React.Component {
         </ul>
       </div>
     );
-    // else
-    //   return <div>Nothing</div>
   }
 }
 
