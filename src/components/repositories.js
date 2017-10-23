@@ -4,12 +4,14 @@ import Issues from './issues';
 class Repositories extends React.Component {
   render() {
     const repos = this.props.chocolate;
+    // const repoOwner =
+
+
     const repoItems = repos.map(repo => {
-      console.log('//// userName: ', this.props.userName);
       return (
         <li key={repo.id} className="list-group-item">
-          <div className="col">{repo.name} ({repo.open_issues_count})</div>
-          <Issues repoName={repo.name} userName={this.props.userName} />
+          <div className="col">{repo.name} ({repo.open_issues_count}) {repo.owner.login}</div>
+          <Issues repoOwner={repo.owner.login} repoName={repo.name} />
         </li>
       )
     });

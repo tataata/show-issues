@@ -4,6 +4,11 @@ class UserCard extends React.Component {
   render() {
     const userData = this.props.data;
 
+    if (!userData) {
+      return <div>No such user. Check on mistypos maybe?</div>;
+    }
+
+
     return (
       <div className="col">
         <div className="card">

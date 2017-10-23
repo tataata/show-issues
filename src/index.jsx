@@ -6,6 +6,7 @@ import UsernameForm from './components/username_form';
 import UserCard from './components/user_card';
 import Repositories from './components/repositories';
 
+const API = 'https://api.github.com/users';
 
 class App extends React.Component {
   constructor() {
@@ -40,7 +41,7 @@ class App extends React.Component {
     });
 
     // Fetch profile info
-    fetch(`https://api.github.com/users/${username}`)
+    fetch(`${API}/${username}`)
       .then((res) => res.json() )
       .then((data) => {
         this.setState({
@@ -49,14 +50,13 @@ class App extends React.Component {
       });
 
     // Fetch list of repos
-    fetch(`https://api.github.com/users/${username}/repos?type=all`)
+    fetch(`${API}/${username}/repos?type=all`)
       .then((res) => res.json() )
       .then((data) => {
         this.setState({
           repositories: data,
         });
       });
-
   }
 
   render() {
@@ -69,7 +69,7 @@ class App extends React.Component {
         <div>
           <UsernameForm />
           <UserCard data={this.state.username} />
-          <Repositories chocolate={this.state.repositories} userName={this.state.username.login} />
+          <Repositories chocolate={this.state.repositories} />
         </div>
       )
     else

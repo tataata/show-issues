@@ -11,11 +11,11 @@ class Issues extends React.Component {
   }
 
   componentWillMount() {
-    const {repoName, userName} = this.props;
-    console.log('//// repo name: ', repoName);
+    const {repoName, repoOwner} = this.props;
+    console.log('//// owner username: ', repoOwner);
 
     // Fetch open issues
-    fetch(`https://api.github.com/repos/${userName}/${repoName}/issues?state=open`)
+    fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/issues?state=open`)
       .then((res) => res.json() )
       .then((data) => {
         this.setState({
@@ -26,8 +26,6 @@ class Issues extends React.Component {
 
   render() {
     const {issues} = this.state;
-
-    console.log('///// render: ', issues);
 
     if (!issues || !issues.length) {
       return <div>nothing</div>
